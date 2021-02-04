@@ -9,6 +9,21 @@ for cmd in echo /bin/echo; do
     fi
 done
 
+clear
+
+echo "Thanks to:"
+echo "          Jamchoi"
+echo "          Poka Leo"
+echo "          d7fb"
+echo "          xiye"
+echo "Solutions integrated from the Internet. Thanks to all!"
+
+echo "[警告] 僅推薦 Debian10/Ubuntu20.04/CentOS8 版本及更高版本使用!"
+read -p "[警告] 其他版本使用可能出現的問題本腳本是不負澤任的，民白？ [y/n]" is_continue
+if [[ ${is_continue} == "n" || ${is_continue} == "N" ]]; then
+    exit 0
+fi
+
 CSI=$($echo -e "\033[")
 CEND="${CSI}0m"
 CDGREEN="${CSI}32m"
@@ -46,11 +61,11 @@ elif cat /proc/version | grep -q -E -i "ubuntu"; then
 elif cat /proc/version | grep -q -E -i "centos|red hat|redhat"; then
     release="centos"
 else
-    OUT_ERROR "[错误] 不支持的操作系统！"
+    OUT_ERROR "[錯誤] 不支持的操作系統！"
     exit 1
 fi
 
-OUT_ALERT "[信息] 正在更新源中！"
+OUT_ALERT "[信息] 正在更新源！"
 if [[ ${release} == "centos" ]]; then
     yum makecache
     yum install epel-release -y
@@ -58,18 +73,18 @@ else
     apt update
 fi
 
-OUT_ALERT "[信息] 正在安装 haveged 增强性能中！"
+OUT_ALERT "[信息] 正在安裝 haveged 增強性能中！"
 if [[ ${release} == "centos" ]]; then
     yum install haveged -y
 else
     apt install haveged -y
 fi
 
-OUT_ALERT "[信息] 正在配置 haveged 增强性能中！"
+OUT_ALERT "[信息] 正在配置 haveged 增強性能中！"
 systemctl disable --now haveged
 systemctl enable --now haveged
 
-OUT_ALERT "[信息] 正在优化系统参数中！"
+OUT_ALERT "[信息] 正在優化系統參數中！"
 cat > /etc/sysctl.conf << EOF
 net.ipv6.conf.all.accept_ra = 2
 net.core.default_qdisc=fq
@@ -108,5 +123,5 @@ ForwardToSyslog=no
 EOF
 sysctl -p
 
-OUT_INFO "[信息] 优化完毕！"
+OUT_INFO "[信息] 優化完畢！"
 exit 0
