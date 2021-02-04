@@ -10,16 +10,17 @@ for cmd in echo /bin/echo; do
 done
 
 clear
-
+echo "-------------------------------------------------------"
 echo "Thanks to:"
-echo ""
+echo
 echo "          Jamchoi"
 echo "          Poka Leo"
 echo "          d7fb"
 echo "          xiye"
-echo ""
+echo
 echo "Solutions integrated from the Internet. Thanks to all!"
-echo ""
+echo "-------------------------------------------------------"
+echo
 
 echo "[警告] 僅推薦 Debian10/Ubuntu20.04/CentOS8 版本及更高版本使用!"
 read -p "[警告] 其他版本使用可能出現的問題本腳本是不負澤任的，民白？ [y/n]" is_continue
@@ -27,7 +28,7 @@ if [[ ${is_continue} == "n" || ${is_continue} == "N" ]]; then
     exit 0
 fi
 
-echo ""
+echo
 echo "[信息] 優化開始"
 
 CSI=$($echo -e "\033[")
