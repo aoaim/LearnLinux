@@ -27,6 +27,9 @@ if [[ ${is_continue} == "n" || ${is_continue} == "N" ]]; then
     exit 0
 fi
 
+echo ""
+echo "[信息] 優化開始"
+
 CSI=$($echo -e "\033[")
 CEND="${CSI}0m"
 CDGREEN="${CSI}32m"
